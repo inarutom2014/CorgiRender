@@ -14,12 +14,12 @@ namespace Corgi
                 HDR,
             };
 
-            static Image* Create(int32 width, int32 height, int32 channels, EImageFormat foramt);
-            static Image* Load(const ANSICHAR* fileName);
+            static Image *Create(int32 width, int32 height, int32 channels, EImageFormat foramt);
+            static Image *Load(const ANSICHAR *fileName);
             virtual ~Image();
 
-            void Save(const ANSICHAR* fileName);
-            inline uint8* GetLdrBuffer() const { return m_ldrBuffer; }
+            void Save(const ANSICHAR *fileName);
+            inline uint8 *GetLdrBuffer() const { return m_ldrBuffer; }
 
         private:
             Image(int32 width, int32 height, int32 channels, EImageFormat format);
@@ -29,8 +29,8 @@ namespace Corgi
             int m_width;
             int m_height;
             int m_channels;
-            uint8* m_ldrBuffer;
-            float* m_hdrBuffer;
+            uint8 *m_ldrBuffer;
+            float *m_hdrBuffer;
         };
     } // namespace Core
 } // namespace Corgi

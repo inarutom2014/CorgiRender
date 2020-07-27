@@ -14,3 +14,5 @@ namespace Corgi
     } // namespace Core
 
 } // namespace Corgi
+
+#define PLATFORM_LITTLE_ENDIAN      1

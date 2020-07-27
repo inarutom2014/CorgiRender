@@ -7,9 +7,7 @@ namespace Corgi
 {
     namespace Core
     {
-        static const WIDECHAR * const WINDOW_ENTRY_NAME = L"Entry";
-
-        static HWND CreateWindowInternal(const ANSICHAR* title, int32 width, int32 height)
+        static HWND CreateWindowInternal(const ANSICHAR* title_, int32 width, int32 height)
         {
             CORGI_CHECK(width > 0 && height > 0);
             DWORD style = WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
@@ -21,6 +19,13 @@ namespace Corgi
             AdjustWindowRect(&rect, style, 0);
             width = rect.right - rect.left;
             height = rect.bottom - rect.top;
+
+#ifdef UNICODE
+            WIDECHAR title[256];
+            mbstowcs(title, title_, 256);
+#else
+            const ANSICHAR *title = title_;
+#endif
 
             HWND handle = CreateWindow(TEXT("Class"), title, style,
                 CW_USEDEFAULT, CW_USEDEFAULT, width, height,
