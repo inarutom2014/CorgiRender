@@ -7,12 +7,11 @@ namespace Corgi
 {
     namespace Core
     {
-        const WIDECHAR *const WindowsPlatformMisc::WINDOW_CLSS_NAME = L"Class";
-
         static LRESULT CALLBACK process_message(HWND hWnd, UINT uMsg,
                                         WPARAM wParam, LPARAM lParam)
         {
-
+            //TODO
+            return 0;
         }
 
         void WindowsPlatformMisc::PlatformInit()
@@ -27,14 +26,14 @@ namespace Corgi
             window_class.hCursor = LoadCursor(nullptr, IDC_ARROW);
             window_class.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
             window_class.lpszMenuName = nullptr;
-            window_class.lpszClassName = WINDOW_CLSS_NAME;
+            window_class.lpszClassName = TEXT("Class");
             class_atom = RegisterClass(&window_class);
             CORGI_UNUSED_VARIABLE(class_atom);
         }
 
         void WindowsPlatformMisc::PlatformTerminate()
         {
-            UnregisterClass(WINDOW_CLSS_NAME, GetModuleHandle(nullptr));
+            UnregisterClass(TEXT("Class"), GetModuleHandle(nullptr));
         }
 
 

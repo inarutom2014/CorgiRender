@@ -17,8 +17,9 @@ namespace Corgi
             return nullptr;
         }
 
-        void GenericWindow::Destroy()
+        void GenericWindow::DrawBuffer()
         {
+
         }
     } // namespace Core
 } // namespace Corgi

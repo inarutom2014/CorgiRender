@@ -11,11 +11,9 @@ namespace Corgi
             public:
                 static void PlatformInit();
                 static void PlatformTerminate();
-                static GenericWindow* CreateWindow(const TCHAR* title, int width, int height) {
+                /*static GenericWindow* CreateWindow(const TCHAR* title, int width, int height) {
                     return nullptr;
-                }
-
-                static const WIDECHAR *const WINDOW_CLSS_NAME;
+                }*/
         };
         typedef WindowsPlatformMisc PlatformMisc;
     }

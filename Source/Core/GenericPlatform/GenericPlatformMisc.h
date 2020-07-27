@@ -16,10 +16,10 @@ namespace Corgi
 
             static void PlatformTerminate() {}
 
-            static GenericWindow *CreateWindow(const TCHAR *title, int width, int height)
+            /*static GenericWindow *CreateWindow_(const TCHAR *title, int32 width, int32 height)
             {
                 return nullptr;
-            }
+            }*/
         };
     } // namespace Core
 } // namespace Corgi

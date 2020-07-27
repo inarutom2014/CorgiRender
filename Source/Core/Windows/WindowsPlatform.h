@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/GenericPlatform/GenericPlatform.h"
+#include "../GenericPlatform/GenericPlatform.h"
 
 namespace Corgi
 {

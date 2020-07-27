@@ -9,7 +9,7 @@ namespace Corgi
         public:
             GenericWindow();
             virtual ~GenericWindow();
-            virtual void Destroy();
+            virtual void DrawBuffer();
         };
     } // namespace Core
 } // namespace Corgi

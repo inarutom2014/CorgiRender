@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(HEADERS
     Source/Core/GenericPlatform/GenericPlatform.h
     Source/Core/GenericPlatform/GenericWindow.h
+    Source/Core/Graphic/Image.h
     Source/Core/HAL/Platform.h
     Source/Core/Misc/AssertionMacros.h
     Source/Core/Misc/CoreMacrosDefines.h
@@ -17,6 +18,7 @@ set(HEADERS
 
 set(SOURCES
     Source/Core/GenericPlatform/GenericWindow.cpp
+    Source/Core/Graphic/Image.cpp
     Source/main.cpp
 )
 
