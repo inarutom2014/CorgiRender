@@ -9,9 +9,7 @@ namespace Corgi
         public:
             GenericWindow();
             virtual ~GenericWindow();
-
-            static GenericWindow* Create(int width, int height);
             virtual void Destroy();
         };
-    }
-}
+    } // namespace Core
+} // namespace Corgi

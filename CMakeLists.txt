@@ -10,6 +10,9 @@ set(HEADERS
     Source/Core/GenericPlatform/GenericPlatform.h
     Source/Core/GenericPlatform/GenericWindow.h
     Source/Core/HAL/Platform.h
+    Source/Core/Misc/AssertionMacros.h
+    Source/Core/Misc/CoreMacrosDefines.h
+    Source/Core/CoreTypes.h
 )
 
 set(SOURCES
@@ -21,11 +24,14 @@ if(MSVC)
     set(HEADERS
         ${HEADERS}
         Source/Core/Windows/WindowsPlatform.h
+        Source/Core/Windows/WindowsPlatformMisc.h
+        Source/Core/Windows/WindowsWindow.h
     )
-    # set(SOURCES 
-    #     ${SOURCES}
-    #     Source/Core/Windows/WindowsPlatform.cpp
-    # )
+    set(SOURCES 
+        ${SOURCES}
+        Source/Core/Windows/WindowsPlatformMisc.cpp
+        Source/Core/Windows/WindowsWindow.cpp
+    )
 endif()
 
 # Target

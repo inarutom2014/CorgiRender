@@ -24,5 +24,5 @@ namespace Corgi
             typedef WIDECHAR TCHAR;
         };
     } // namespace Core
-    
+
 } // namespace Corgi

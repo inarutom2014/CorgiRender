@@ -6,22 +6,19 @@ namespace Corgi
     {
         GenericWindow::GenericWindow()
         {
-
         }
 
         GenericWindow::~GenericWindow()
         {
-
         }
 
-        GenericWindow* Create(int width, int height)
+        GenericWindow *Create(int width, int height)
         {
-            return new GenericWindow();
+            return nullptr;
         }
 
         void GenericWindow::Destroy()
         {
-            
         }
-    }
+    } // namespace Core
 } // namespace Corgi
