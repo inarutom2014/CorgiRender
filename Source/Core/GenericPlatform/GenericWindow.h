@@ -8,6 +8,7 @@ namespace Corgi
         {
         public:
             GenericWindow();
+			virtual bool ShouldClose() const { return true; }
             virtual ~GenericWindow();
             virtual void DrawBuffer();
         };

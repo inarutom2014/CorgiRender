@@ -20,7 +20,7 @@ namespace Corgi
 
             void Save(const ANSICHAR *fileName);
             inline uint8 *GetLdrBuffer() const { return m_ldrBuffer; }
-
+			void ClearLdrBuffer();
         private:
             Image(int32 width, int32 height, int32 channels, EImageFormat format);
 

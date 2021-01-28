@@ -1,6 +1,15 @@
 #include "WindowsWindow.h"
 #include "../Graphic/Image.h"
+#include <stdlib.h>
+#include <string.h>
+#include <direct.h>
 #include <Windows.h>
+
+#ifdef _MSC_VER
+#pragma comment(lib, "gdi32.lib")
+#pragma comment(lib, "user32.lib")
+#endif
+
 using Image = Corgi::Core::Image;
 
 namespace Corgi
@@ -21,15 +30,16 @@ namespace Corgi
             height = rect.bottom - rect.top;
 
 #ifdef UNICODE
-            WIDECHAR title[256];
-            mbstowcs(title, title_, 256);
+			wchar_t title[LINE_SIZE];
+			mbstowcs(title, title_, LINE_SIZE);
 #else
-            const ANSICHAR *title = title_;
+			const char *title = title_;
 #endif
 
             HWND handle = CreateWindow(TEXT("Class"), title, style,
                 CW_USEDEFAULT, CW_USEDEFAULT, width, height,
-                nullptr, nullptr, GetModuleHandle(nullptr), nullptr);
+				NULL, NULL, GetModuleHandle(NULL), NULL);
+			assert(handle != NULL);
             return handle;
         }
 
@@ -40,17 +50,15 @@ namespace Corgi
             ReleaseDC(handle, windowDC);
 
             Image* surface = Corgi::Core::Image::Create(width, height, 4, Image::EImageFormat::LDR);
+			surface->ClearLdrBuffer();
 
-            BITMAPINFOHEADER biHeader;
-            memset(&biHeader, 0, sizeof(BITMAPCOREHEADER));
-            biHeader.biSize = sizeof(BITMAPCOREHEADER);
-            biHeader.biWidth = width;
-            //窗口坐标系的Y坐标朝下，bitmap的Y坐标朝上，所以要加个负号
-            biHeader.biHeight = -height;
-            biHeader.biPlanes = 1;
-            biHeader.biBitCount = 32;
-            biHeader.biCompression = BI_RGB;
-            HBITMAP hbitmap = CreateDIBSection(memoryDC, (BITMAPINFO*)&biHeader, DIB_RGB_COLORS, (void**)surface->GetLdrBuffer(), nullptr, 0);
+			LPVOID ptr = surface->GetLdrBuffer();
+
+			BITMAPINFO bi = { { sizeof(BITMAPINFOHEADER), width, -height, 1, 32, BI_RGB,
+				width * height * 4, 0, 0, 0, 0 } };
+
+			uint8 *ldrBuffer = surface->GetLdrBuffer();
+            HBITMAP hbitmap = CreateDIBSection(memoryDC, &bi, DIB_RGB_COLORS, &ptr, 0, 0);
             CORGI_CHECK(hbitmap != nullptr);
             HBITMAP oldBitmap = (HBITMAP)SelectObject(memoryDC, hbitmap);
             DeleteObject(oldBitmap);
@@ -59,7 +67,7 @@ namespace Corgi
         }
 
         WindowsWindow::WindowsWindow(const ANSICHAR *title, int32 width, int32 height)
-            : m_handle(0), m_memoryDC(nullptr), m_surface(nullptr)
+            : m_handle(0), m_memoryDC(nullptr), m_surface(nullptr), m_bClose(false)
         {
             HWND handle;
             // image_t *surface;
@@ -83,6 +91,11 @@ namespace Corgi
 
             delete m_surface;
         }
+
+		bool WindowsWindow::ShouldClose() const
+		{
+			return m_bClose;
+		}
 
         void WindowsWindow::DrawBuffer()
         {

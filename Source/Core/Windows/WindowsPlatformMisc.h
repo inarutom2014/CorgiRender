@@ -6,14 +6,15 @@ namespace Corgi
 {
     namespace Core
     {
+		class GenericWindow;
         class WindowsPlatformMisc : public GenericPlatformMisc
         {
             public:
                 static void PlatformInit();
+				static void MainLoop();
+				static void PollEvents();
                 static void PlatformTerminate();
-                /*static GenericWindow* CreateWindow(const TCHAR* title, int width, int height) {
-                    return nullptr;
-                }*/
+				static GenericWindow *CreatePlatformWindow(const ANSICHAR* title, int32 width, int32 height);
         };
         typedef WindowsPlatformMisc PlatformMisc;
     }

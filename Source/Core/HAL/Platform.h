@@ -2,7 +2,6 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 #include "../Windows/WindowsPlatform.h"
-#include "../Windows/WindowsPlatformMisc.h"
 #endif
 
 namespace Corgi

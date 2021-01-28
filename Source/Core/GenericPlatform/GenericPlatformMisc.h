@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../CoreTypes.h"
-#include "GenericWindow.h"
 
 namespace Corgi
 {
@@ -13,13 +12,13 @@ namespace Corgi
         {
         public:
             static void PlatformInit() {}
-
+			static void MainLoop() {}
             static void PlatformTerminate() {}
 
-            /*static GenericWindow *CreateWindow_(const TCHAR *title, int32 width, int32 height)
+            static GenericWindow *CreatePlatformWindow(const ANSICHAR *title, int32 width, int32 height)
             {
                 return nullptr;
-            }*/
+            }
         };
     } // namespace Core
 } // namespace Corgi

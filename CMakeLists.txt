@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Header and Source
 set(HEADERS
     Source/Core/GenericPlatform/GenericPlatform.h
+    Source/Core/GenericPlatform/GenericPlatformMisc.h
     Source/Core/GenericPlatform/GenericWindow.h
     Source/Core/Graphic/FrameBuffer.h
     Source/Core/Graphic/Image.h
@@ -54,6 +55,10 @@ add_executable(${TARGET} ${HEADERS} ${SOURCES})
 #     target_compile_options(${TARGET} PRIVATE -ffast-math)
 # endif()
 
+# ==============================================================================
+# IDE support
+# ==============================================================================
 
 set_directory_properties(PROPERTIES VS_STARTUP_PROJECT ${TARGET})
+source_group(TREE "${CMAKE_SOURCE_DIR}/Source" FILES ${HEADERS} ${SOURCES})
 

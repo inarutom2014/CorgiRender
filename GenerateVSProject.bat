@@ -11,6 +11,8 @@ if not exist %CURRENT_DIR%%PROJECT_NAME% (
 cd %CURRENT_DIR%%PROJECT_NAME%
 
 rem Generate vs2019 project
-cmake -G "Visual Studio 16 2019" ..
+rem cmake -G "Visual Studio 16 2019" ..
+rem Generate VS2017 project.
+cmake -G "Visual Studio 15 2017" ..
 REM cmake --build . --target Viewer --config Release
 pause

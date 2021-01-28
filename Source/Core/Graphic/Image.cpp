@@ -38,7 +38,7 @@ namespace Corgi
         Image::Image(int32 width, int32 height, int32 channels, EImageFormat format)
             : m_width(width), m_height(height), m_channels(channels), m_format(format), m_ldrBuffer(nullptr), m_hdrBuffer(nullptr)
         {
-            CORGI_CHECK(width > 0 && height > 0 && channels > 0);
+            CORGI_CHECK(width > 0 && height > 0 && channels >= 1 && channels <= 4);
             int numElements = width * height * channels;
             switch (format)
             {
@@ -60,6 +60,15 @@ namespace Corgi
                 break;
             }
         }
+
+		void Image::ClearLdrBuffer()
+		{
+			if (m_ldrBuffer != nullptr)
+			{
+				delete m_ldrBuffer;
+				m_ldrBuffer = nullptr;
+			}
+		}
 
     } // namespace Core
 } // namespace Corgi
